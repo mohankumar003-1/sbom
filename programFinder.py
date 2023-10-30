@@ -1,4 +1,5 @@
 import re
+import os
 from pipreqs import pipreqs
 def findLanguagefromExtension(val):
     if(val == '.py'):
@@ -28,6 +29,10 @@ def findLanguage(filename):
     # elif(match[0]== 'namespace' or match[0]== 'constructor' or match[0]== 'destructor' or match[0]== 'friend' or match[0]== 'template' or match[0]== 'STL' or match[0]== 'virtual'  ):
     #     print("c++")
     
-        
-        
-findLanguage('test.py')
+path = r'C:\Users\MOHANKUMAR\PROJECTS\Machine Learning\sbom\test'
+if os.path.isdir(path):
+     files = os.listdir(path)
+     for file in files:
+        findLanguage(os.path.join(path,file))
+else:
+    print(f"{path} is not a valid directory.")
