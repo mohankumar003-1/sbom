@@ -1,0 +1,2 @@
+pandas==1.5.3
+pipreqs==0.4.13
