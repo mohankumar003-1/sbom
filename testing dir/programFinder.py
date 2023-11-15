@@ -49,6 +49,7 @@ path = r'C:\Users\MOHANKUMAR\PROJECTS\Machine Learning\sbom\test'
 if os.path.isdir(path):
      files = os.listdir(path)
      for file in files:
+        print(file)
         language = findLanguage(os.path.join(path,file))
         if(language == "python"):
             vulnerability(path)
