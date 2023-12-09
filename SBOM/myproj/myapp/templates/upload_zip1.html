@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Zip File</title>
+</head>
+<body>
+    <h1>Upload a Zip File</h1>
+    <form method="post" enctype="multipart/form-data" action="{% url 'upload_zip' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Upload">
+    </form>
+    <h2>File List</h2>
+    <ul>
+      {% for file in files %}
+        <li>
+          {{ file.filename }} - {{ file.rules }} - {{ file.vul }} 
+        </li>
+      {% endfor %}
+    </ul>
+</body>
+</html>

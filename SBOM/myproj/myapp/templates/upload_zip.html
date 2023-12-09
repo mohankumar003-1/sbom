@@ -1,22 +1,156 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Upload Zip File</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sih website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+<style>
+  ul {
+    margin-top: 20px;
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+  }
+
+  li {
+    margin-bottom: 10px; /* Add more margin between list items for spacing */
+    border: 1px solid #ccc; /* Add a border for visual separation */
+    padding: 8px; /* Add padding for better readability */
+  }
+
+  li span {
+    margin-right: 330px; /* Add margin between pieces of content inside each li */
+  }
+  .re{
+    color: red;
+  }
+  .gre{
+    color: green;
+  }
+  .ora{
+    color: orange;
+  }
+</style>
 <body>
-    <h1>Upload a Zip File</h1>
+  <section>
+    <!----------------------------------slidebar-------------------------------------------------------->
+    <div class="sideBar">
+      <img class="logo" src="{% static 'img/1.png'%}" alt="logo" width="30px" height="40px">
+      <nav>
+        <ul>
+          <li>Dashboard</li>
+          <li>SBOM</li>
+          <li>Upload code</li>
+          <li>Report</li>
+          <li>settings</li>
+        </ul>
+      </nav>
+    </div>
+    <!----------------------------------slidebar-------------------------------------------------------->
+<div class="left-side">
+  <div class="header">
+    <div class="search-box">
+      <i style="width:15px;margin-top: 9px;" class="fa-solid fa-magnifying-glass"></i>
+      <input  style="border: none;outline: none;" type="search" placeholder="search anythong here!">
+    </div>
+    <div class= "notification">
+      <nav>
+        <ul style="list-style-type: none;">
+          
+            </ul>
+      </nav>
+
+    </div>
+  </div>
+
+  
+  <div class="heading-activities">
+    <h1>ACTIVITIES</h1>
     <form method="post" enctype="multipart/form-data" action="{% url 'upload_zip' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Upload">
-    </form>
-    <h2>File List</h2>
-    <ul>
-      {% for file in files %}
-        <li>
-          {{ file.filename }} - {{ file.rules }} - {{ file.vul }} 
-        </li>
-      {% endfor %}
+      {% csrf_token %}
+     <div class="btn"> {{ form.as_p }}</div>
+      <input type="submit" value="Upload" class="btn">
+  </form>
+  </div>
+ <div class="input-box">
+    <h3>NAME</h3>
+    <h3>RULES</h3>
+    <h3>VULNERABILITY</h3>
+    
+  </div> 
+  <ul>
+    {% for file in files %}
+    <li>
+      {%if file.vul == 'HIGH'%}
+      <span>{{ file.filename }}</span> <span>{{ file.rules }}</span> <span class="re">{{ file.vul }}</span> 
+      {% endif %}
+      {%if file.vul == 'LOW'%}
+      <span>{{ file.filename }}</span> <span>{{ file.rules }}</span> <span class="gre">{{ file.vul }}</span> 
+      {% endif %}
+      {%if file.vul == 'MEDIUM'%}
+      <span>{{ file.filename }}</span> <span>{{ file.rules }}</span> <span class="ora">{{ file.vul }}</span> 
+      {% endif %}
+ </li>
+    {% endfor %}
+  </ul>
+  
+  <!--<div class="container">
+    <h2>Responsive Tables Using LI <small>Triggers on 767px</small></h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">Job Id</div>
+        <div class="col col-2">Customer Name</div>
+        <div class="col col-3">Amount Due</div>
+        <div class="col col-4">Payment Status</div>
+      </li>
+      <li class="table-row">
+        <div class="col col-1" data-label="Job Id">42235</div>
+        <div class="col col-2" data-label="Customer Name">John Doe</div>
+        <div class="col col-3" data-label="Amount">$350</div>
+        <div class="col col-4" data-label="Payment Status">Pending</div>
+      </li>
+      <li class="table-row">
+        <div class="col col-1" data-label="Job Id">42442</div>
+        <div class="col col-2" data-label="Customer Name">Jennifer Smith</div>
+        <div class="col col-3" data-label="Amount">$220</div>
+        <div class="col col-4" data-label="Payment Status">Pending</div>
+      </li>
+      <li class="table-row">
+        <div class="col col-1" data-label="Job Id">42257</div>
+        <div class="col col-2" data-label="Customer Name">John Smith</div>
+        <div class="col col-3" data-label="Amount">$341</div>
+        <div class="col col-4" data-label="Payment Status">Pending</div>
+      </li>
+      <li class="table-row">
+        <div class="col col-1" data-label="Job Id">42311</div>
+        <div class="col col-2" data-label="Customer Name">John Carpenter</div>
+        <div class="col col-3" data-label="Amount">$115</div>
+        <div class="col col-4" data-label="Payment Status">Pending</div>
+      </li>
     </ul>
+  </div>-->
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+
+
+  
 </body>
 </html>

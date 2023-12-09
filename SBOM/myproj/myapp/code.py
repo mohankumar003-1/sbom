@@ -34,6 +34,7 @@ def pyvulnerability(path,i):
     if result.returncode == 0:
         print("Bandit found no issues.")
         rule.append(0)
+        return rule
 
     else:
         print("Bandit found issues. Here's the report:")
@@ -90,21 +91,9 @@ def folderaccess():
                 a = pyvulnerability(path1,i)
                 pydependencies(path1)
                 i = i+1
-                
-            # elif(language == "java"):
-            #     print("gu")
-            #     javavulnerability(path1)
-            # #javadependencies(path)
-            # elif(language == "cpp"):
-            #     cppvulnerability(path1)
-            # #cppdependencies(path)
-            # elif(language == "js"):
-            #     jsvulnerability(path1)
-            # #jsdependencies(path)
-            # elif(language == "c"):
-            #     cvulnerability(path1)
-            #cdependencies(path) 
         ans = sum(a)/len(a)
+        print("!!")
+        print(ans)
         if ans>1.0 :
             sol.append(2)
             print("HIGH")
@@ -132,9 +121,8 @@ def assist(path):
     directories = [d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))]
     for a in directories:
         print(a)
+        
         return a
-
-
 path = r'C:\Users\MOHANKUMAR\PROJECTS\Machine Learning\sbom\SBOM\myproj\media\extracted_zips'
 
 
